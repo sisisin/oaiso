@@ -1,6 +1,6 @@
 var express = require('express');
 var path = require('path');
-var favicon = require('serve-favicon');
+// var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
@@ -22,7 +22,6 @@ passport.use(new TwitterStrategy({ consumerKey, consumerSecret, callbackURL },
     passport.session.id = profile.id;
     profile.twitter_token = token;
     profile.twitter_token_secret = tokenSecret;
-    console.log(profile);
     done(null, profile);
   }
 ));
@@ -55,9 +54,7 @@ app.use(passport.session());
 
 app.use('/login', login);
 app.use('/oauth', oauth);
-app.use('/', (req, res, next) => req.session.passport.user.id ?
- next() :
-  res.redirect('/login'), routes);
+app.use('/', (req, res, next) => req.session.passport.user.id ? next() : res.redirect('/login'), routes);
 app.use('/users', users);
 
 // catch 404 and forward to error handler
@@ -68,9 +65,6 @@ app.use(function (req, res, next) {
 });
 
 // error handlers
-
-// development error handler
-// will print stacktrace
 if (app.get('env') === 'development') {
   app.use(function (err, req, res, next) {
     res.status(err.status || 500);
@@ -81,8 +75,6 @@ if (app.get('env') === 'development') {
   });
 }
 
-// production error handler
-// no stacktraces leaked to user
 app.use(function (err, req, res, next) {
   res.status(err.status || 500);
   res.render('error', {
