@@ -5,7 +5,10 @@ module.exports = {
         "es6": true,
         "node": true
     },
-    "extends": "eslint:recommended",
+    "extends": [
+        "eslint:recommended",
+        "plugin:react/recommended"
+    ],
     "parserOptions": {
         "ecmaFeatures": {
             "experimentalObjectRestSpread": true,
@@ -33,5 +36,11 @@ module.exports = {
             "always"
         ],
         "no-unused-vars": ["error", { "args": "none" }]
+    },
+    "settings": {
+        "react": {
+            "pragma": "React",
+            "version": "15.2.1"
+        }
     }
 };

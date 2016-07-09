@@ -1,4 +1,8 @@
 node_modules/
 npm-debug.log
 
+# server
 config.js
+
+# front
+server/public/js/
