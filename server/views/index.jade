@@ -2,7 +2,8 @@ extends layout
 
 block content
   h1= title
-  p Welcome to #{title}
+  div#container
+  script(src='/js/index.js')
   div
     img(src="#{session.user.photos[0].value}", alt="UserIcon")
   div= session.user.displayName

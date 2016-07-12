@@ -8,28 +8,20 @@ const session = require('express-session');
 
 var passport = require('passport');
 var TwitterStrategy = require('passport-twitter').Strategy;
-const {consumerKey, consumerSecret} = require('./config');
-const callbackURL = 'http://localhost:3000/oauth/callback';
+const {consumerKey, consumerSecret} = require('./config/secret');
+const callbackURL = 'http://localhost:3000/login/callback';
 
-passport.serializeUser(function (user, done) {
-  done(null, user);
-});
-passport.deserializeUser(function (obj, done) {
-  done(null, obj);
-});
-passport.use(new TwitterStrategy({ consumerKey, consumerSecret, callbackURL },
-  function (token, tokenSecret, profile, done) {
-    passport.session.id = profile.id;
-    profile.twitter_token = token;
-    profile.twitter_token_secret = tokenSecret;
-    done(null, profile);
-  }
-));
+passport.serializeUser((user, done) => { done(null, user); });
+passport.deserializeUser((obj, done) => { done(null, obj); });
+passport.use(
+  new TwitterStrategy({ consumerKey, consumerSecret, callbackURL },
+  (twitter_token, twitter_token_secret, profile, done) => {
+    done(null, Object.assign(profile, { twitter_token, twitter_token_secret }));
+  })
+);
 
 const routes = require('./routes/index');
 const login = require('./routes/login');
-var users = require('./routes/users');
-const oauth = require('./routes/oauth');
 
 var app = express();
 
@@ -53,9 +45,11 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use('/login', login);
-app.use('/oauth', oauth);
-app.use('/', (req, res, next) => req.session.passport.user.id ? next() : res.redirect('/login'), routes);
-app.use('/users', users);
+app.use('/'
+  ,(req, res, next) =>
+    req.session.passport === undefined ? res.redirect('/login') : next()
+  , routes
+);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

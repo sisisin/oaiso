@@ -2,7 +2,7 @@ node_modules/
 npm-debug.log
 
 # server
-config.js
+server/config/secret.js
 
 # front
 server/public/js/
