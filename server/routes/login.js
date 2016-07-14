@@ -1,15 +1,17 @@
 var express = require('express');
-var router = express.Router();
+var login = express.Router();
 var passport = require('passport');
 const config = require('../config/app');
 
-router.get('/', function(req, res, next) {
+const get = (req, res, next) => {
   const title = config.appTitle;
   res.render('login', { title });
-});
-router.get('/oauth', passport.authenticate('twitter'));
-router.get('/callback',
+};
+
+login.get('/', get);
+login.get('/oauth', passport.authenticate('twitter'));
+login.get('/callback',
   passport.authenticate('twitter', { successRedirect: '/',
                                      failureRedirect: '/login' }));
 
-module.exports = router;
+module.exports = { login, get };
