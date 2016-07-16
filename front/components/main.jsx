@@ -11,6 +11,7 @@ class Child extends React.Component {
         hello
         <img src={photos[0].value} alt="UserIcon"/>
         <div>{displayName}</div>
+        <button onClick={() => this.context.dispatch('tweet', 20)}>hoge</button>
       </div>
     );
   }

@@ -21,7 +21,8 @@
     "morgan": "~1.7.0",
     "passport": "^0.3.2",
     "passport-twitter": "^1.0.4",
-    "serve-favicon": "~2.3.0"
+    "serve-favicon": "~2.3.0",
+    "twit": "^2.2.4"
   },
   "devDependencies": {
     "axios": "^0.13.1",

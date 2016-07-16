@@ -5,8 +5,9 @@ const axios = require('axios');
 const Child = require('./components/main.jsx');
 
 @subscriber((self, subscribe) => {
-  subscribe('foo', (prop) => {
-    console.log('foo received on', prop);
+  subscribe('tweet', (prop) => {
+    console.log(`prop:${prop}`);
+    return axios.post('/api/update', {message: `残り${prop}`});
     // self.setState({...})
   });
 })
