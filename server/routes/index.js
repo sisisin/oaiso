@@ -3,9 +3,8 @@ var router = express.Router();
 const config = require('../config/app');
 
 const get = (req, res, next) => {
-  const session = req.session.passport;
   const title = config.appTitle;
-  res.render('index', { title, session });
+  res.render('index', { title });
 };
 
 router.get('/', get);

@@ -5,7 +5,7 @@ const { appTitle } = require('../../../server/config/app');
 
 describe('index get', () => {
   const spy = sinon.spy();
-  const spyReq = { session: { passport: 'passportObject' } };
+  const spyReq = {};
   const spyRes = { render: spy };
 
   beforeEach(() => { get(spyReq, spyRes); });
@@ -15,6 +15,6 @@ describe('index get', () => {
   });
 
   it('render func called with title and request object', () => {
-    assert(spy.calledWith('index', { title: appTitle, session: spyReq.session.passport }));
+    assert(spy.calledWith('index', { title: appTitle }));
   });
 });
