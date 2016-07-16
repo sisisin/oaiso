@@ -5,6 +5,11 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 const session = require('express-session');
+const RedisStore = require('connect-redis')(session);
+const redisStore = new RedisStore({
+  port: 6379
+  , host: 'localhost'
+});
 
 var passport = require('passport');
 var TwitterStrategy = require('passport-twitter').Strategy;
@@ -37,7 +42,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
-  secret: 'keyboard cat',
+  store: redisStore,
+  secret: 'nokorinanbu',
   resave: false,
   saveUninitialized: false
 }));
