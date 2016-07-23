@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "start": "node ./server/bin/www",
-    "build": "browserify ./front/index.jsx -t babelify -o server/public/js/index.js",
-    "build:w": "watchify ./front/index.jsx -t babelify -o server/public/js/index.js -v",
+    "build": "browserify ./front/index.jsx -t babelify -o server/public/js/index.js -d",
+    "build:w": "watchify ./front/index.jsx -t babelify -o server/public/js/index.js -v -d",
     "lint": "eslint ./server/*.js ./server/routes/** ./front/** ./front/**/**",
     "test": "mocha --require intelli-espower-loader --recursive",
     "test:w": "mocha --require intelli-espower-loader --recursive --watch"
@@ -27,6 +27,7 @@
   "devDependencies": {
     "axios": "^0.13.1",
     "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "babel-polyfill": "^6.9.1",
     "babel-preset-es2015": "^6.9.0",
     "babel-preset-react": "^6.11.1",
     "babel-preset-stage-3": "^6.11.0",
@@ -34,6 +35,7 @@
     "browserify": "^13.0.1",
     "eslint": "^3.0.1",
     "eslint-plugin-react": "^5.2.2",
+    "immutable": "^3.8.1",
     "intelli-espower-loader": "^1.0.1",
     "mocha": "^2.5.3",
     "power-assert": "^1.4.1",
@@ -41,6 +43,7 @@
     "react-dispatcher-decorator": "^0.1.2",
     "react-dom": "^15.2.1",
     "sinon": "^1.17.4",
+    "stone-skin": "^0.6.0",
     "supertest": "^1.2.0",
     "watchify": "^3.7.0"
   }

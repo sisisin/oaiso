@@ -53,7 +53,7 @@ app.use(passport.session());
 app.use('/login', login);
 app.use('/'
   ,(req, res, next) =>
-    req.session.passport === undefined ? res.redirect('/login') : next()
+    !!req.session && !!req.session.passport ? next() : res.redirect('/login')
   , router
 );
 app.use('/api', api);
