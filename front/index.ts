@@ -1,14 +1,18 @@
 require('babel-polyfill');
-const React = require('react');
-const { render } = require('react-dom');
-const axios = require('axios');
-const Main = require('./components/main.jsx');
-const Immutable = require('immutable');
-const uuid = require('node-uuid');
-const { CopyStore, SoldStore } = require('./models/models');
-const { Flux, Component } = require('flumpt');
+import React = require('react');
+import ReactDOM = require('react-dom');
+import axios = require('axios');
+import Immutable = require('immutable');
+import uuid = require('node-uuid');
+import Flumpt = require('flumpt');
+const { Flux, Component } = Flumpt;
 
-class App extends Flux {
+import { Main } from './components/main';
+import {CopyStore, SoldStore} from './models/models';
+
+class App extends Flux<IState> {
+  copyStore: CopyStore;
+  soldStore: SoldStore;
   constructor({renderer, initialState, middlewares}) {
     super({ renderer, initialState, middlewares });
     this.copyStore = new CopyStore();
@@ -18,7 +22,7 @@ class App extends Flux {
   subscribe() {
     this.on('init main', prop => {
       this.soldStore.ready;
-      axios.get('/api/profile')
+      axios.get<IUser>('/api/profile')
         .then(res => {
           const {photos, displayName} = res.data;
           this.update(state => Object.assign({}, state, { user: { photos, displayName } }));
@@ -26,11 +30,11 @@ class App extends Flux {
       (async () => {
         await this.copyStore.ready;
         const copyData = (await this.copyStore.all())[0];
-        const newState = (_ => {
+        const newState = (() => {
           if (copyData != null) { return { copyData }; }
 
           const oldState = Immutable.fromJS(this.state.copyData);
-          const newState = oldState.set('_id', uuid()).toJS();
+          const newState = oldState.set('_id', uuid.v1()).toJS();
           return { copyData: newState };
         })();
         this.update(state => Object.assign({}, state, newState))
@@ -75,7 +79,7 @@ class App extends Flux {
 }
 
 const app = new App({
-  renderer: el => { render(el, document.getElementById('container')); }
+  renderer: el => { ReactDOM.render(el, document.getElementById('container')); }
   , initialState: { user: {}, copyData: { _id: '', title: '', firstCirculation: '', printingCost: '', distriPrice: '' } }
   , middlewares: [(state) => { console.log(state); return state; }]
 });

@@ -6,3 +6,5 @@ server/config/secret.js
 
 # front
 server/public/js/
+typings/
+_tmp/
