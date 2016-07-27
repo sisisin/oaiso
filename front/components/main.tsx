@@ -1,7 +1,8 @@
-const React = require('react');
-const { Component } = require('flumpt');
+import React = require('react');
+import Flumpt = require('flumpt');
+const { Component } = Flumpt;
 
-class Main extends Component {
+export class Main extends Component<IState, {}> {
   componentDidMount() {
     this.dispatch('init main');
   }
@@ -19,7 +20,7 @@ class Main extends Component {
   }
 }
 
-class Child extends Component {
+class Child extends Component<{ user: IUser }, {}> {
   render() {
     const { photos, displayName } = this.props.user;
     if (photos === undefined) return <Loading/>;
@@ -38,7 +39,7 @@ function Input({placeholder, value, onChange}) {
   return <input type="text" placeholder={placeholder} value={value} onChange={onChange}/>;
 }
 
-class StoreArea extends Component {
+class StoreArea extends Component<{ copyData: ICopyData }, {}> {
   render() {
     const { title, firstCirculation, printingCost, distriPrice } = this.props.copyData;
     const tt = {
@@ -76,7 +77,7 @@ class StoreArea extends Component {
   }
 }
 
-class Increment extends Component {
+class Increment extends Component<{}, {}> {
   render() {
     return (
       <div>
@@ -90,4 +91,3 @@ class Increment extends Component {
 function Loading() {
   return (<div>now loading.</div>);
 }
-module.exports = Main;
