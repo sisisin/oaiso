@@ -2,29 +2,11 @@ require('babel-polyfill');
 const React = require('react');
 const { render } = require('react-dom');
 const axios = require('axios');
-const {Child, StoreArea, Increment} = require('./components/main.jsx');
+const Main = require('./components/main.jsx');
 const Immutable = require('immutable');
 const uuid = require('node-uuid');
 const { CopyStore, SoldStore } = require('./models/models');
 const { Flux, Component } = require('flumpt');
-
-class Main extends Component {
-  componentDidMount() {
-    this.dispatch('init main');
-  }
-  render() {
-    const {user, copyData} = this.props;
-    return (
-      <div>
-        <Child user={user} />
-        <hr/>
-        <StoreArea copyData={copyData} />
-        <hr/>
-        <Increment />
-      </div>
-    );
-  }
-}
 
 class App extends Flux {
   constructor({renderer, initialState, middlewares}) {
@@ -88,7 +70,7 @@ class App extends Flux {
     });
   }
   render(state) {
-    return <Main {...state}/>;
+    return React.createElement(Main, state);
   }
 }
 

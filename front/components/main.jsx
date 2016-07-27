@@ -1,6 +1,24 @@
 const React = require('react');
 const { Component } = require('flumpt');
 
+class Main extends Component {
+  componentDidMount() {
+    this.dispatch('init main');
+  }
+  render() {
+    const {user, copyData} = this.props;
+    return (
+      <div>
+        <Child user={user} />
+        <hr/>
+        <StoreArea copyData={copyData} />
+        <hr/>
+        <Increment />
+      </div>
+    );
+  }
+}
+
 class Child extends Component {
   render() {
     const { photos, displayName } = this.props.user;
@@ -72,4 +90,4 @@ class Increment extends Component {
 function Loading() {
   return (<div>now loading.</div>);
 }
-module.exports = { Child, StoreArea, Increment };
+module.exports = Main;

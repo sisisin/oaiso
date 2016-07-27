@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "start": "node ./server/bin/www",
-    "build": "browserify ./front/index.jsx -t babelify -o server/public/js/index.js -d",
-    "build:w": "watchify ./front/index.jsx -t babelify -o server/public/js/index.js -v -d",
+    "build": "browserify ./front/index.js -t babelify -o server/public/js/index.js -d",
+    "build:w": "watchify ./front/index.js -t babelify -o server/public/js/index.js -v -d",
     "lint": "eslint ./server/*.js ./server/routes/** ./front/** ./front/**/**",
     "test": "mocha --require intelli-espower-loader --recursive",
     "test:w": "mocha --require intelli-espower-loader --recursive --watch"
