@@ -3,37 +3,10 @@ const React = require('react');
 const { render } = require('react-dom');
 const { subscriber } = require('react-dispatcher-decorator');
 const axios = require('axios');
-const StoneSkin = require('stone-skin/with-tv4');
 const {Child, StoreArea, Increment} = require('./components/main.jsx');
 const Immutable = require('immutable');
 const uuid = require('node-uuid');
-
-class CopyStore extends StoneSkin.IndexedDb {
-  get storeName() { return 'Copy'; }
-  constructor() {
-    super();
-    const typeNumber = { type: 'number' };
-    const typeString = { type: 'string' };
-    this.schema = {
-      _id: typeString
-      , title: typeString
-      , firstCirculation: typeNumber
-      , printingCost: typeNumber
-      , distriPrice: typeNumber
-    };
-  }
-}
-class SoldStore extends StoneSkin.IndexedDb {
-  get storeName() { return 'Sold'; }
-  constructor() {
-    super();
-    const typeNumber = { type: 'number' };
-    this.schema = {
-      sold: typeNumber
-      , distriPrice: typeNumber
-    };
-  }
-}
+const { CopyStore, SoldStore } = require('./models/models');
 
 @subscriber((self, subscribe) => {
   subscribe('tweet', (prop) => {
