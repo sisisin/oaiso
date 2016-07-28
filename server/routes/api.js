@@ -20,7 +20,8 @@ const post = (req, res, next) => {
 };
 
 const getProfile = (req, res) => {
-  res.json(req.session.passport.user);
+  const {id, photos, displayName} = req.session.passport.user;
+  res.json({id, photos, displayName});
 };
 
 api.post('/update', post);

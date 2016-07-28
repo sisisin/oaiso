@@ -1,5 +1,8 @@
+type CopyId = string;
+type UserId = string;
+
 interface ICopyStore {
-  _id: string;
+  _id: CopyId;
   title: string;
   firstCirculation: number;
   printingCost: number;
@@ -7,24 +10,22 @@ interface ICopyStore {
 }
 
 interface ISoldStore {
+  _id?: string;
+  userId: UserId;
+  copyId: CopyId;
   sold: number;
-  distriPrice: string;
-}
-
-interface ICopyData {
-  _id: string;
-  title: string;
-  firstCirculation: string;
-  printingCost: string;
-  distriPrice: string;
+  distriPrice: number;
+  insertTime: Date;
 }
 
 interface IState {
   user: IUser;
-  copyData: ICopyData;
+  copyData: ICopyStore;
+  solds: ISoldStore[];
 }
 
 interface IUser {
+  id: UserId;
   photos: { value: string }[];
   displayName: string;
 }
