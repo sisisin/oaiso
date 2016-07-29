@@ -1,4 +1,4 @@
-{
+module.exports = {
   "development": {
     "username": "local",
     "password": "",
@@ -7,11 +7,12 @@
     "dialect": "postgres"
   },
   "test": {
-    "username": "root",
-    "password": null,
-    "database": "database_test",
+    "username": "local",
+    "password": "",
+    "database": "onokori_test",
     "host": "127.0.0.1",
-    "dialect": "postgres"
+    "dialect": "postgres",
+    logging: () => {}
   },
   "production": {
     "username": "root",
