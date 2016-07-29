@@ -9,8 +9,8 @@
     "bundle": "browserify ./_tmp/index.js -t babelify -o server/public/js/index.js -d",
     "bundle:w": "watchify ./_tmp/index.js -t babelify -o server/public/js/index.js -v -d",
     "lint": "eslint ./server/*.js ./server/routes/** ./front/** ./front/**/**",
-    "test": "mocha --require intelli-espower-loader --recursive",
-    "test:w": "mocha --require intelli-espower-loader --recursive --watch"
+    "test": "NODE_ENV=test mocha --require intelli-espower-loader --recursive",
+    "test:w": "NODE_ENV=test mocha --require intelli-espower-loader --recursive --watch"
   },
   "dependencies": {
     "body-parser": "~1.15.1",
@@ -23,6 +23,10 @@
     "morgan": "~1.7.0",
     "passport": "^0.3.2",
     "passport-twitter": "^1.0.4",
+    "pg": "^6.0.3",
+    "pg-hstore": "^2.3.2",
+    "sequelize": "^3.23.6",
+    "sequelize-cli": "^2.4.0",
     "serve-favicon": "~2.3.0",
     "twit": "^2.2.4"
   },

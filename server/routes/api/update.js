@@ -1,6 +1,4 @@
-const api = require('express').Router();
 const Twit = require('twit');
-const config = require('../config/secret');
 
 const post = (req, res, next) => {
   const {twitter_token, twitter_token_secret} = req.session.passport.user;
@@ -19,12 +17,4 @@ const post = (req, res, next) => {
   res.json({ result: 'success' });
 };
 
-const getProfile = (req, res) => {
-  const {id, photos, displayName} = req.session.passport.user;
-  res.json({id, photos, displayName});
-};
-
-api.post('/update', post);
-api.get('/profile', getProfile);
-
-module.exports = { api, post };
+module.exports = { post };
