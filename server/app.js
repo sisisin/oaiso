@@ -13,7 +13,7 @@ const redisStore = new RedisStore({
 
 var passport = require('passport');
 var TwitterStrategy = require('passport-twitter').Strategy;
-const {consumerKey, consumerSecret} = require('./config/secret');
+const {consumerKey, consumerSecret} = require('./config/app');
 const callbackURL = 'http://localhost:3000/login/callback';
 
 passport.serializeUser((user, done) => { done(null, user); });

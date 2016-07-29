@@ -1,0 +1,14 @@
+machine:
+  node:
+    version: 6.3.0
+  environment:
+    NODE_ENV: test
+
+checkout:
+  post:
+    - chmod +x ./setup.sh
+
+database:
+  post:
+    - ./setup.sh
+    - cd ./server; $(npm bin)/sequelize db:migrate --env test
