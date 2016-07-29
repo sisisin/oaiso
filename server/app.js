@@ -27,7 +27,7 @@ passport.use(
 
 const { router } = require('./routes/index');
 const { login } = require('./routes/login');
-const { api } = require('./routes/api');
+const { api } = require('./routes/api/api');
 
 var app = express();
 
