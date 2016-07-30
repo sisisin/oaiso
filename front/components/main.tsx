@@ -9,7 +9,34 @@ export class Main extends Component<IState, {}> {
     this.dispatch(Events.InitMain);
   }
   render() {
-    const {solds, user, copyData} = this.props;
+    // const {isRegisterd} = this.props.circle;
+    // if (isRegisterd) {
+      return <Circle {...this.props}/>;
+    // } else {
+    //   return <Registration {...this.props.circle}/>;
+    // }
+  }
+}
+
+class Registration extends Component<ICircleStore, {}>{
+  render() {
+    const { name } = this.props;
+    const c = {
+      placeholder: 'サークル名'
+      , value: name
+      , onChange: (e) => { this.dispatch(Events.ChangeCircleName, e.currentTarget.value); }
+    };
+
+    return (
+      <div>
+        <form><Input {...c} /></form>
+      </div>
+    );
+  }
+}
+class Circle extends Component<IState, {}> {
+  render() {
+    const {solds, user, copyData, circle} = this.props;
     return (
       <div>
         <Child {...user} />
@@ -23,7 +50,6 @@ export class Main extends Component<IState, {}> {
     );
   }
 }
-
 class Child extends Component<IUser, {}> {
   render() {
     const { photos, displayName } = this.props;
