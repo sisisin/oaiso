@@ -9,27 +9,30 @@ export class Main extends Component<IState, {}> {
     this.dispatch(Events.InitMain);
   }
   render() {
-    // const {isRegisterd} = this.props.circle;
-    // if (isRegisterd) {
+    const {isRegisterd} = this.props.circle;
+    if (isRegisterd) {
       return <Circle {...this.props}/>;
-    // } else {
-    //   return <Registration {...this.props.circle}/>;
-    // }
+    } else {
+      return <Registration {...this.props.circle.store}/>;
+    }
   }
 }
 
 class Registration extends Component<ICircleStore, {}>{
   render() {
-    const { name } = this.props;
+    const circleName = this.props.name;
     const c = {
       placeholder: 'サークル名'
-      , value: name
+      , value: circleName
       , onChange: (e) => { this.dispatch(Events.ChangeCircleName, e.currentTarget.value); }
     };
 
     return (
       <div>
-        <form><Input {...c} /></form>
+        <form onSubmit={(e) => {e.preventDefault(); this.dispatch(Events.SubmitCircleName, circleName);}}>
+        <Input {...c} />
+        <input type="submit" value="決定" />
+        </form>
       </div>
     );
   }
@@ -39,6 +42,7 @@ class Circle extends Component<IState, {}> {
     const {solds, user, copyData, circle} = this.props;
     return (
       <div>
+        <div>{circle.store.name}</div>
         <Child {...user} />
         <hr/>
         <StoreArea copyData={copyData} />
@@ -53,13 +57,14 @@ class Circle extends Component<IState, {}> {
 class Child extends Component<IUser, {}> {
   render() {
     const { photos, displayName } = this.props;
+    // todo loadingはもっと上に移す
     if (photos === undefined) return <Loading/>;
     return (
       <div>
         hello
         <img src={photos[0].value} alt="UserIcon"/>
         <div>{displayName}</div>
-        <button onClick={() => this.dispatch(Events.Tweet, 20) }>hoge</button>
+        <button onClick={() => this.dispatch(Events.Tweet, 20) }>tweet</button>
       </div>
     );
   }

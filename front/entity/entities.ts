@@ -5,7 +5,12 @@ type CircleId = string;
 interface ICircleStore {
   _id: string;
   name: string;
-  twitter_id: string; 
+  twitter_id: string;
+}
+interface ICircleResponse {
+  id: string;
+  name: string;
+  twitter_id: string;
 }
 interface ICircleRegisterd {
   isRegisterd: boolean;
@@ -31,7 +36,10 @@ interface IState {
   user: IUser;
   copyData: ICopyStore;
   solds: ISoldStore[];
-  circle: ICircleStore;
+  circle: {
+    store: ICircleStore;
+    isRegisterd: boolean;
+  };
 }
 
 interface IUser {

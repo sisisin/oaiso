@@ -1,7 +1,7 @@
 export const Events = {
   InitMain: 'init main'
   , ChangeCircleName: 'changeCircleName'
-  , SetInitialCircle: 'setInitialCircle' 
+  , SubmitCircleName: 'SubmitCircleName'
   , Tweet: 'tweet'
   , ChangeFirstCirculation: 'changeFirstCirculation'
   , ChangePrintingCost: 'changePrintingCost'
