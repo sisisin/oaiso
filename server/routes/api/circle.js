@@ -18,6 +18,8 @@ const get = (req, res, next) => {
 };
 const post = (req, res, next) => {
   const {name} = req.body;
+  if (name == null || name === '') return res.json(null);
+
   const twitter_id = req.session.passport.user.id;
   db.Circle
     .create({ name, twitter_id })
@@ -25,6 +27,7 @@ const post = (req, res, next) => {
 };
 const put = (req, res) => {
   const {name} = req.body;
+  if (name == null || name === '') return res.json(null);
   req.circle.set({ name });
   req.circle
     .save()

@@ -1,6 +1,20 @@
 type CopyId = string;
 type UserId = string;
+type CircleId = string;
 
+interface ICircleStore {
+  _id: string;
+  name: string;
+  twitter_id: string;
+}
+interface ICircleResponse {
+  id: string;
+  name: string;
+  twitter_id: string;
+}
+interface ICircleRegisterd {
+  isRegisterd: boolean;
+}
 interface ICopyStore {
   _id: CopyId;
   title: string;
@@ -22,6 +36,10 @@ interface IState {
   user: IUser;
   copyData: ICopyStore;
   solds: ISoldStore[];
+  circle: {
+    store: ICircleStore;
+    isRegisterd: boolean;
+  };
 }
 
 interface IUser {

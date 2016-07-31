@@ -1,4 +1,5 @@
 const Twit = require('twit');
+const config = require('../../config/app');
 
 const post = (req, res, next) => {
   const {twitter_token, twitter_token_secret} = req.session.passport.user;
