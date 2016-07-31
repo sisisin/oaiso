@@ -7,11 +7,6 @@ export const circleService = {
 }
 export const profileService = {
   get(){
-    return new Promise<IUser>((resolve, reject) => {
-      axios
-        .get<IUser>('/api/profile')
-        .then(res => resolve(res.data))
-        .catch(err => reject(err));
-    });
+    return axios.get<IUser>('/api/profile').then(res => res.data);
   }
 }

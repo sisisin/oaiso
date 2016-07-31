@@ -20,35 +20,42 @@ class App extends Flux<IState> {
   subscribe() {
     this.on(Events.InitMain, () => {
       this.update(({solds, copyData, circle}) => {
-        return profileService
-          .get()
-          .then(user => ({ solds, copyData, circle, user }));
+        return (async () => {
+          const user = await profileService.get();
+          return { solds, copyData, circle, user };
+        })();
       });
 
-      this.update(async ({user, solds, copyData, circle}) => {
-        await this.copyStore.ready;
-        const copyFromDb = (await this.copyStore.all())[0];
-        const newCopyData = copyFromDb == null ? assign({}, copyData, { _id: uuid.v1() }) : copyFromDb;
-        return assign({}, { user, solds, circle }, { copyData: newCopyData });
+      this.update(({user, solds, copyData, circle}) => {
+        return (async (): Promise<IState> => {
+          await this.copyStore.ready;
+          const copyFromDb = (await this.copyStore.all())[0];
+          const newCopyData = copyFromDb == null ? assign({}, copyData, { _id: uuid.v1() }) : copyFromDb;
+          return { user, solds, circle, copyData: newCopyData };
+        })();
       });
 
-      this.update(async ({user, copyData, circle}) => {
-        await this.soldStore.ready;
-        const solds = await this.soldStore.all();
-        const newState = solds == null ? [] : solds;
-        return assign({}, { user, copyData, circle }, { solds: newState });
+      this.update(({user, copyData, circle}) => {
+        return (async (): Promise<IState> => {
+          await this.soldStore.ready;
+          const solds = await this.soldStore.all();
+          const newState = solds == null ? [] : solds;
+          return { user, copyData, circle, solds: newState };
+        })();
       });
 
-      this.update(async ({user, copyData, solds, circle}) => {
-        await this.circleStore.ready;
-        const circleFromDb = (await this.circleStore.all())[0];
-        if (circleFromDb != null) return { user, copyData, solds, circle: circleFromDb };
-        const circleFromAPI = await circleService.get();
-        if (circleFromAPI == null) {
-          return { user, copyData, solds, circle: circleFromAPI };
-        }
-        const {id, name, twitter_id} = circleFromAPI;
-        return { user, copyData, solds, circle: { _id: id, name, twitter_id } };
+      this.update(({user, copyData, solds, circle}) => {
+        return (async (): Promise<IState> => {
+          await this.circleStore.ready;
+          const circleFromDb = (await this.circleStore.all())[0];
+          if (circleFromDb != null) return { user, copyData, solds, circle: circleFromDb };
+
+          const circleFromAPI = await circleService.get();
+          if (circleFromAPI == null) { return { user, copyData, solds, circle: null }; }
+
+          const {id, name, twitter_id} = circleFromAPI;
+          return { user, copyData, solds, circle: { _id: id, name, twitter_id } };
+        })();
       });
     });
 
@@ -61,55 +68,58 @@ class App extends Flux<IState> {
       this.update(({user, copyData, solds, circle}) => {
         if (Number.isNaN(+firstCirculationFromHtml)) { return { user, copyData, solds, circle }; }
         const newCopyData = assign({}, copyData, { firstCirculation: +firstCirculationFromHtml })
-        return assign({}, { user, solds, circle }, { copyData: newCopyData });
+        return { user, solds, circle, copyData: newCopyData };
       });
     });
     this.on(Events.ChangePrintingCost, (printingCostFromHtml: string) => {
       this.update(({user, copyData, solds, circle}) => {
         if (Number.isNaN(+printingCostFromHtml)) { return { user, copyData, solds, circle }; }
         const newCopyData = assign({}, copyData, { printingCost: +printingCostFromHtml })
-        return assign({}, { user, solds, circle }, { copyData: newCopyData });
+        return { user, solds, circle, copyData: newCopyData };
       });
     });
     this.on(Events.ChangeDistriPrice, (distriPriceFromHtml: string) => {
       this.update(({user, copyData, solds, circle}) => {
         if (Number.isNaN(+distriPriceFromHtml)) { return { user, copyData, solds, circle }; }
         const newCopyData = assign({}, copyData, { distriPrice: +distriPriceFromHtml })
-        return assign({}, { user, solds, circle }, { copyData: newCopyData });
+        return { user, solds, circle, copyData: newCopyData };
       });
     });
     this.on(Events.ChangeTitle, (title: string) => {
       this.update(({user, copyData, solds, circle}) => {
         const newCopyData = assign({}, copyData, { title })
-        return assign({}, { user, solds, circle }, { copyData: newCopyData });
+        return { user, solds, circle, copyData: newCopyData };
       });
     });
     this.on(Events.Increment, () => {
-      this.update(async ({user, copyData, circle}) => {
-        const sold = 1;
-        const {_id, distriPrice} = copyData;
-        const userId = user.id;
-        const insertTime = new Date();
-        await this.soldStore.save({ userId, copyId: _id, sold, distriPrice, insertTime });
-        const solds = await this.soldStore.all();
-        return { user, copyData, solds, circle };
+      this.update(({user, copyData, circle}) => {
+        return (async (): Promise<IState> => {
+          const sold = 1;
+          const {_id, distriPrice} = copyData;
+          const userId = user.id;
+          const insertTime = new Date();
+          await this.soldStore.save({ userId, copyId: _id, sold, distriPrice, insertTime });
+          const solds = await this.soldStore.all();
+          return { user, copyData, solds, circle };
+        })();
       });
     });
     this.on(Events.Decrement, () => {
-      this.update(async ({user, copyData, circle}) => {
-        const sold = -1;
-        const {_id, distriPrice} = copyData;
-        const userId = user.id;
-        const insertTime = new Date();
-        await this.soldStore.save({ userId, copyId: _id, sold, distriPrice, insertTime });
-        const solds = await this.soldStore.all();
-        return { user, copyData, solds, circle };
+      this.update(({user, copyData, circle}) => {
+        return (async (): Promise<IState> => {
+          const sold = -1;
+          const {_id, distriPrice} = copyData;
+          const userId = user.id;
+          const insertTime = new Date();
+          await this.soldStore.save({ userId, copyId: _id, sold, distriPrice, insertTime });
+          const solds = await this.soldStore.all();
+          return { user, copyData, solds, circle };
+        })();
       });
     });
-    this.on(Events.SaveCopyData, (props) => {
-      return this.copyStore.save(props);
-    });
+    this.on(Events.SaveCopyData, (props) => this.copyStore.save(props));
   }
+
   render(state) {
     return React.createElement(Main, state);
   }
