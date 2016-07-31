@@ -10,7 +10,7 @@
     "bundle:w": "watchify ./_tmp/index.js -t babelify -o server/public/js/index.js -v -d",
     "lint": "eslint ./server/*.js ./server/routes/** ./front/** ./front/**/**",
     "test": "NODE_ENV=test mocha --require intelli-espower-loader --recursive",
-    "test:w": "NODE_ENV=test mocha --require intelli-espower-loader --recursive --watch"
+    "test:w": "NODE_ENV=test mocha --require intelli-espower-loader --recursive --reporter dot --watch"
   },
   "dependencies": {
     "body-parser": "~1.15.1",
