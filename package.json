@@ -2,8 +2,10 @@
   "name": "onokori",
   "version": "0.0.0",
   "private": true,
+  "engines": {
+    "node": "6.3.0"
+  },
   "scripts": {
-    "postinstall": "typings i",
     "start": "node ./server/bin/www",
     "tsc:w": "tsc -w",
     "bundle": "browserify ./_tmp/index.js -t babelify -o server/public/js/index.js -d",

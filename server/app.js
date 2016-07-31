@@ -6,23 +6,18 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 const session = require('express-session');
 const RedisStore = require('connect-redis')(session);
-const redisStore = new RedisStore({
-  port: 6379
-  , host: 'localhost'
-});
+const {PassportOption, RedisOption} = require('./config/app');
+const redisStore = new RedisStore(RedisOption);
 
 var passport = require('passport');
 var TwitterStrategy = require('passport-twitter').Strategy;
-const {consumerKey, consumerSecret} = require('./config/app');
-const callbackURL = 'http://localhost:3000/login/callback';
-
 passport.serializeUser((user, done) => { done(null, user); });
 passport.deserializeUser((obj, done) => { done(null, obj); });
 passport.use(
-  new TwitterStrategy({ consumerKey, consumerSecret, callbackURL },
-  (twitter_token, twitter_token_secret, profile, done) => {
-    done(null, Object.assign(profile, { twitter_token, twitter_token_secret }));
-  })
+  new TwitterStrategy(PassportOption,
+    (twitter_token, twitter_token_secret, {id, photos, displayName}, done) => {
+      done(null, { id, photos, displayName, twitter_token, twitter_token_secret });
+    })
 );
 
 const { router } = require('./routes/index');
@@ -36,7 +31,7 @@ app.set('view engine', 'jade');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-app.use(logger('dev', { skip() { return app.get('env') === 'test'; }}));
+app.use(logger('dev', { skip() { return app.get('env') === 'test'; } }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -51,9 +46,14 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use('/login', login);
-app.use('/'
-  ,(req, res, next) =>
-    !!req.session && !!req.session.passport ? next() : res.redirect('/login')
+app.use(
+  '/'
+  , (req, res, next) => {
+    if (!req.user) {
+      return res.redirect('/login');
+    }
+    next();
+  }
   , router
 );
 app.use('/api', api);
