@@ -14,7 +14,7 @@
     "lint": "eslint ./server/*.js ./server/routes/** ./front/** ./front/**/**",
     "test": "NODE_ENV=test mocha --require intelli-espower-loader --recursive",
     "test:w": "NODE_ENV=test mocha --require intelli-espower-loader --recursive --reporter dot --watch",
-    "minify":"uglifyjs server/public/js/index.js -o server/public/js/index.js",
+    "minify": "uglifyjs server/public/js/index.js -o server/public/js/index.js",
     "build": "tsc && mkdirp ./server/public/js && npm run bundle && npm run minify",
     "heroku-postbuild": "sequelize db:migrate --config server/config/config.js --migrations-path ./server/migrations/ && npm run build"
   },
@@ -27,6 +27,7 @@
     "babelify": "^7.3.0",
     "body-parser": "~1.15.1",
     "browserify": "^13.0.1",
+    "compression": "^1.6.2",
     "connect-redis": "^3.1.0",
     "cookie-parser": "~1.4.3",
     "debug": "~2.2.0",
