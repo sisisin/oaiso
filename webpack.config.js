@@ -5,9 +5,5 @@ module.exports = {
   },
   resolve: {
     extensions: ['.ts', '.js']
-  },
-  module: {
-    loaders: [
-    ]
   }
 };
