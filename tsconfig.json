@@ -9,9 +9,9 @@
       "dom"
     ],
     "mapRoot": "./",
-    "module": "commonjs",
+    "module": "es2015",
     "moduleResolution": "node",
-    "outDir": "dist/out-tsc",
+    "outDir": "_tmp",
     "sourceMap": true,
     "target": "es5",
     "typeRoots": [
