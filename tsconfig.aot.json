@@ -16,7 +16,8 @@
       "./node_modules/@types"
     ]
   },
-  "exclude": [
-    "node_modules"
-  ]
+  "angularCompilerOptions": {
+    "genDir": "_tmp_aot",
+    "skipMetadataEmit": true
+  }
 }
