@@ -16,3 +16,6 @@ _tmp_aot/
 
 # mock
 docs/mocks_dist/*.html
+
+# editor
+.vscode
