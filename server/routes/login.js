@@ -11,7 +11,6 @@ const get = (req, res, next) => {
 login.get('/', get);
 login.get('/oauth', passport.authenticate('twitter'));
 login.get('/callback',
-  passport.authenticate('twitter', { successRedirect: '/',
-                                     failureRedirect: '/login' }));
+  passport.authenticate('twitter', { successRedirect: '/', failureRedirect: '/login' }));
 
 module.exports = { login, get };
