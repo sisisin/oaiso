@@ -1,7 +1,8 @@
 {
-  "name": "onokori",
+  "name": "oaiso",
   "version": "0.0.0",
-  "private": true,
+  "license": "MIT",
+  "angular-cli": {},
   "engines": {
     "node": "7.2.1"
   },
@@ -11,9 +12,12 @@
     "tsc:w": "tsc -w",
     "bundle": "browserify ./_tmp/index.js -t babelify -o server/public/js/index.js -d",
     "bundle:w": "watchify ./_tmp/index.js -t babelify -o server/public/js/index.js -v -d",
-    "lint": "eslint ./server/*.js ./server/routes/** ./front/** ./front/**/**",
-    "test": "NODE_ENV=test mocha --require intelli-espower-loader --recursive",
-    "test:w": "NODE_ENV=test mocha --require intelli-espower-loader --recursive --reporter dot --watch",
+    "lint": "npm run lint:server && npm run lint:front",
+    "lint:server": "eslint ./server/*.js ./server/routes/**",
+    "lint:front": "tslint \"src/**/*.ts\"",
+    "test": "npm run test:server",
+    "test:server": "NODE_ENV=test mocha --require intelli-espower-loader --recursive",
+    "test:server:w": "NODE_ENV=test mocha --require intelli-espower-loader --recursive --reporter dot --watch",
     "minify": "uglifyjs server/public/js/index.js -o server/public/js/index.js",
     "build": "tsc && mkdirp ./server/public/js && npm run bundle && npm run minify",
     "watch": "npm-run-all --parallel bundle:w test:w tsc:w",
@@ -21,6 +25,18 @@
     "heroku-postbuild": "sequelize db:migrate --config server/config/config.js --migrations-path ./server/migrations/ && npm run build"
   },
   "dependencies": {
+    "@angular/common": "2.2.3",
+    "@angular/compiler": "2.2.3",
+    "@angular/core": "2.2.3",
+    "@angular/forms": "2.2.3",
+    "@angular/http": "2.2.3",
+    "@angular/platform-browser": "2.2.3",
+    "@angular/platform-browser-dynamic": "2.2.3",
+    "@angular/router": "3.2.3",
+    "core-js": "^2.4.1",
+    "rxjs": "5.0.0-beta.12",
+    "ts-helpers": "^1.1.1",
+    "zone.js": "^0.6.23",
     "axios": "^0.13.1",
     "babel-polyfill": "^6.9.1",
     "babel-preset-es2015": "^6.9.0",
@@ -54,9 +70,13 @@
     "uglify-js": "^2.7.0"
   },
   "devDependencies": {
+    "@types/mocha": "^2.2.33",
     "eslint": "^3.0.1",
     "eslint-plugin-react": "^5.2.2",
     "intelli-espower-loader": "^1.0.1",
+    "karma": "1.2.0",
+    "karma-chrome-launcher": "^2.0.0",
+    "karma-remap-istanbul": "^0.2.1",
     "jquery": "^3.1.1",
     "materialize-css": "^0.97.8",
     "mocha": "^2.5.3",
@@ -64,6 +84,9 @@
     "power-assert": "^1.4.1",
     "sinon": "^1.17.4",
     "supertest": "^1.2.0",
-    "watchify": "^3.7.0"
+    "ts-loader": "^1.3.3",
+    "tslint": "^4.0.2",
+    "watchify": "^3.7.0",
+    "webpack": "^1.14.0"
   }
 }
