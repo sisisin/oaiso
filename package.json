@@ -7,7 +7,7 @@
   },
   "scripts": {
     "postinstall": "typings install",
-    "start": "node ./server/bin/www",
+    "start": "node --harmony ./server/bin/www",
     "tsc:w": "tsc -w",
     "bundle": "browserify ./_tmp/index.js -t babelify -o server/public/js/index.js -d",
     "bundle:w": "watchify ./_tmp/index.js -t babelify -o server/public/js/index.js -v -d",
