@@ -2,7 +2,7 @@ const isPrd = process.env.NODE_ENV === 'production';
 
 const RedisOption = isPrd ? {
   port: process.env.REDIS_PORT
-  , host: process.env.REDIS_URL
+  , host: process.env.REDIS_HOST
   , pass: process.env.REDIS_PW
 } : {
     port: 6379
@@ -12,7 +12,7 @@ const RedisOption = isPrd ? {
 const PassportOption = {
   consumerKey: process.env.TWITTER_CONSUMER_KEY
   , consumerSecret: process.env.TWITTER_CONSUMER_SECRET
-  , callbackURL: (isPrd ? 'https://onokori.herokuapp.com' : 'http://localhost:3000') + '/login/callback'
+  , callbackURL: (isPrd ? 'https://oaiso.herokuapp.com' : 'http://localhost:3000') + '/login/callback'
 };
 
 module.exports = {

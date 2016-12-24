@@ -4,7 +4,7 @@
   - install addon
   - setup environment variables
     - port: REDIS_PORT
-    - host: REDIS_URL
+    - host: REDIS_HOST
     - pass: REDIS_PW
 
 - add Heroku Postgres
