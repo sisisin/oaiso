@@ -16,9 +16,8 @@
       "./node_modules/@types"
     ]
   },
-  "exclude": [
-    "node_modules",
-    "_tmp_aot",
-    "front/main.aot.ts"
-  ]
+  "angularCompilerOptions": {
+    "genDir": "_tmp_aot",
+    "skipMetadataEmit": true
+  }
 }

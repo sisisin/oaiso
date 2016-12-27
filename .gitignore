@@ -11,8 +11,11 @@ typings/
 _tmp/
 _tmp_aot/
 
+# mock
+docs/mocks_dist/*.html
+
 # editor
 .vscode
 
-# mock
-docs/mocks_dist/*.html
+server/public/fonts
+server/public/vendor

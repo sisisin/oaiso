@@ -1,8 +1,9 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
-
-a {
-  color: #00B7FF;
+.fixed-action-btn ul > li > span {
+    position: absolute;
+    right: 100%;
+    white-space: nowrap;
+    background: rgba(0,0,0,.6);
+    padding: 3px 9px;
+    color: white;
+    margin-top: 4px;
 }

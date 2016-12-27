@@ -9,12 +9,15 @@ const post = (req, res, next) => {
     , access_token: twitter_token
     , access_token_secret: twitter_token_secret
   });
-  // t.post('statuses/update', { status: req.body.message }, (err, data, res) => {
-  //   if (err) return res.json({ result: 'failed', err });
-  //   console.log(data);
-  //   res.json({ result: 'success'});
-  // });
-  console.log(req.body.message);
+  if (process.env.NODE_ENV === 'production') {
+    t.post('statuses/update', { status: req.body.message }, (err, data, res) => {
+      if (err) return res.json({ result: 'failed', err });
+      res.json({ result: 'success' });
+    });
+
+  } else {
+    console.log(req.body.message);
+  }
   res.json({ result: 'success' });
 };
 
