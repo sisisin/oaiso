@@ -1,10 +1,12 @@
 import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { SellComponent } from './sell/sell.component';
-import { SellEditComponent } from './sell/sell.edit.component';
-import { TwitterComponent } from './twitter/twitter.component';
-import { InviteComponent } from './invite/invite.component';
+import {
+  SellComponent,
+  SellEditComponent,
+  TwitterComponent,
+  InviteComponent,
+} from './components';
 
 const appRoutes: Routes = [
   { path: 'sell', component: SellComponent },

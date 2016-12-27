@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CopyStoreService } from '../services/copy.store.service';
+import { CopyStoreService } from '../../services/copy.store.service';
 
 @Component({
   templateUrl: './sell.component.html',
