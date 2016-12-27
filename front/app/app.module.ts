@@ -7,6 +7,8 @@ import { routing } from './app.routing';
 
 import { AppComponent } from './app.component';
 import { SellComponent } from './sell/sell.component';
+import { SellEditComponent } from './sell/sell.edit.component';
+import { SellFABComponent } from './sell/sell.fab.component';
 import { TwitterComponent } from './twitter/twitter.component';
 import { InviteComponent } from './invite/invite.component';
 import { SummaryComponent } from './summary/summary.component';
@@ -17,6 +19,8 @@ import { CopyStoreService } from './services/copy.store.service';
   declarations: [
     AppComponent,
     SellComponent,
+    SellEditComponent,
+    SellFABComponent,
     TwitterComponent,
     InviteComponent,
     SummaryComponent
