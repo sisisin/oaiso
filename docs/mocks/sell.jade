@@ -1,0 +1,84 @@
+extends layout
+
+block content
+  script.
+    $(function () {
+      $(".button-collapse").sideNav({ draggable: true });
+    });
+  nav(class='blue lighten-1', role='navigation')
+    div(class='nav-wrapper container')
+      a#logo-container.brand-logo OAISO
+        ul(class='right hide-on-med-and-down')
+          li
+            a(href='#') Navbar Link
+        ul#nav-mobile.side-nav
+          li
+            div(class='userView blue lighten-1')
+              a(href='#!user')
+                img(class='circle responsive-img' src='https://pbs.twimg.com/profile_images/719912967974719488/b6SnVXF8_normal.jpg')
+              a(href='#!circle-name')
+                span.name(class='white-text') circle_name
+              a(href='#!name')
+                span.email(class='white-text') sisisin
+          li
+            a(href='#') twitter連携
+            a(href='#') 売り子招待
+        a.button-collapse(href='#' data-activates='nav-mobile')
+          i.material-icons menu
+  .container
+    .section
+      .row
+        div(class='col s6')
+          | ￥
+          div(class='input-field inline')
+            input#sum-price(type='text' disabled='disabled' value='1000')
+            label(for='#sum-price') 合計
+        div(class='col s6 valign-wrapper')
+          a(class='waves-effect waves-light btn valign input-field')
+            i(class='material-icons left') send
+            | sold
+
+    table.uk-table
+      thead
+        tr
+          th タイトル
+          th 残り部数
+          th 価格
+          th
+      tbody
+        tr
+          td.uk-text-center-medium ほげ
+          td 19
+          td 500
+          td 
+            a
+              i.material-icons add_circle_outline
+            a
+              i.material-icons remove_circle_outline
+        tr
+          td.uk-text-center-medium fuga
+          td 1
+          td 100
+          td 
+            a
+              i.material-icons add_circle_outline
+            a
+              i.material-icons remove_circle_outline
+      tfoot
+        tr
+          td.right-align(colspan='4')
+            a(class='btn-floating waves-effect waves-light btn')
+              i.material-icons add
+
+  div(class='fixed-action-btn')
+    a(class='btn-floating btn-large red')
+      i.material-icons menu
+    ul
+      li
+        span 譲るモード
+        a(class='btn-floating')
+          i.material-icons card_giftcard
+      li
+        span 編集
+        a(class='btn-floating')
+          i.material-icons edit

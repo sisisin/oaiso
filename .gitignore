@@ -1,5 +1,6 @@
 node_modules/
 npm-debug.log
+coverage/
 
 # server
 server/config/secret.js
@@ -8,3 +9,10 @@ server/config/secret.js
 server/public/js/
 typings/
 _tmp/
+_tmp_aot/
+
+# editor
+.vscode
+
+# mock
+docs/mocks_dist/*.html
