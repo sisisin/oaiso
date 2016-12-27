@@ -16,8 +16,8 @@
     "test:w": "NODE_ENV=test mocha --require intelli-espower-loader --recursive --reporter dot --watch",
     "minify": "uglifyjs server/public/js/index.js -o server/public/js/index.js",
     "build": "tsc && mkdirp ./server/public/js && npm run bundle && npm run minify",
-    "watch":"npm-run-all --parallel bundle:w test:w tsc:w",
-    "watch:m": "jade docs/mocks/ -o dist/ -w",
+    "watch": "npm-run-all --parallel bundle:w test:w tsc:w",
+    "watch:m": "jade docs/mocks/ -o docs/mocks_dist/ -w",
     "heroku-postbuild": "sequelize db:migrate --config server/config/config.js --migrations-path ./server/migrations/ && npm run build"
   },
   "dependencies": {
@@ -57,6 +57,8 @@
     "eslint": "^3.0.1",
     "eslint-plugin-react": "^5.2.2",
     "intelli-espower-loader": "^1.0.1",
+    "jquery": "^3.1.1",
+    "materialize-css": "^0.97.8",
     "mocha": "^2.5.3",
     "npm-run-all": "^2.3.0",
     "power-assert": "^1.4.1",

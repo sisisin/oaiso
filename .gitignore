@@ -15,4 +15,4 @@ _tmp_aot/
 .vscode
 
 # mock
-dist/
+docs/mocks_dist/*.html
