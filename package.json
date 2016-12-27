@@ -29,7 +29,7 @@
     "watch:m": "jade docs/mocks/ -o docs/mocks_dist/ -w",
     "watch:s": "npm-run-all --parallel ut:server:w",
     "migrate": "sequelize db:migrate --config server/config/config.js --migrations-path ./server/migrations/",
-    "heroku-postbuild": "npm run migrate && npm run build"
+    "heroku-postbuild": "npm run migrate && mkdir server/public/vendor && npm run build"
   },
   "dependencies": {
     "@angular/common": "^2.3.1",
