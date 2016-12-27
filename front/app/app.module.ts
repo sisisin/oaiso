@@ -7,11 +7,15 @@ import { routing } from './app.routing';
 
 import { AppComponent } from './app.component';
 import { SellComponent } from './sell/sell.component';
+import { TwitterComponent } from './twitter/twitter.component';
+import { InviteComponent } from './invite/invite.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SellComponent
+    SellComponent,
+    TwitterComponent,
+    InviteComponent
   ],
   imports: [
     BrowserModule,
