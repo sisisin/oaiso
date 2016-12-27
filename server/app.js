@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 const compression = require('compression'); 
 const session = require('express-session');
 const RedisStore = require('connect-redis')(session);
-const {PassportOption, RedisOption} = require('./config/app');
+const {PassportOption, RedisOption, appTitle} = require('./config/app');
 const redisStore = new RedisStore(RedisOption);
 
 var passport = require('passport');
@@ -60,11 +60,9 @@ app.use(
 );
 app.use('/api', api);
 
-// catch 404 and forward to error handler
-app.use(function (req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
+// catch all route and forward index
+app.use((req, res, next) => {
+  res.render('index', { title: appTitle });
 });
 
 // error handlers
