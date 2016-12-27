@@ -5,8 +5,8 @@ import { HttpModule } from '@angular/http';
 
 import { routing } from './app.routing';
 
-import { AppComponent } from './app.component';
 import {
+  RootComponent,
   SellComponent,
   SellEditComponent,
   SellFABComponent,
@@ -18,7 +18,7 @@ import { CopyStoreService } from './services/copy.store.service';
 
 @NgModule({
   declarations: [
-    AppComponent,
+    RootComponent,
     SellComponent,
     SellEditComponent,
     SellFABComponent,
@@ -35,6 +35,6 @@ import { CopyStoreService } from './services/copy.store.service';
   providers: [
     CopyStoreService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [RootComponent]
 })
 export class AppModule { }
