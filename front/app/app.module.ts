@@ -9,13 +9,17 @@ import { AppComponent } from './app.component';
 import { SellComponent } from './sell/sell.component';
 import { TwitterComponent } from './twitter/twitter.component';
 import { InviteComponent } from './invite/invite.component';
+import { SummaryComponent } from './summary/summary.component';
+
+import { CopyStoreService } from './services/copy.store.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     SellComponent,
     TwitterComponent,
-    InviteComponent
+    InviteComponent,
+    SummaryComponent
   ],
   imports: [
     BrowserModule,
@@ -23,7 +27,9 @@ import { InviteComponent } from './invite/invite.component';
     HttpModule,
     routing
   ],
-  providers: [],
+  providers: [
+    CopyStoreService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
