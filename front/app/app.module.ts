@@ -10,6 +10,7 @@ import {
   SellComponent,
   SellEditComponent,
   SellFABComponent,
+  SellNewComponent,
   TwitterComponent,
   InviteComponent,
   SummaryComponent
@@ -22,6 +23,7 @@ import { CopyStoreService } from './services/copy.store.service';
     SellComponent,
     SellEditComponent,
     SellFABComponent,
+    SellNewComponent,
     TwitterComponent,
     InviteComponent,
     SummaryComponent

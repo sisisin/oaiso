@@ -17,17 +17,25 @@
     </thead>
     <tbody>
       <tr *ngFor="let copy of copyStoreService.copies">
-        <td>{{copy.title}}</td>
-        <td>{{copy.circulation}}</td>
-        <td>{{copy.price}}</td>
-        <td> <a><i class="material-icons">add_circle_outline</i></a><a><i class="material-icons">remove_circle_outline</i></a></td>
+        <td>
+          <div class="input-field">
+            <input type="text" value="{{copy.title}}" />
+          </div>
+        </td>
+        <td>
+          <div class="input-field">
+            <input type="text" value="{{copy.circulation}}" />
+          </div>
+        </td>
+        <td>
+          <div class="input-field">
+            <input type="text" value="{{copy.price}}" />
+          </div>
+        </td>
+        <td></td>
       </tr>
     </tbody>
-    <tfoot>
-      <tr>
-        <td colspan="4" class="right-align"><a class="btn-floating waves-effect waves-light btn"><i class="material-icons">add</i></a></td>
-      </tr>
-    </tfoot>
+    <tfoot appSellNew></tfoot>
   </table>
 </div>
 <app-sell-fab></app-sell-fab>
