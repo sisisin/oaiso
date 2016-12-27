@@ -6,6 +6,7 @@ module.exports = {
     path: path.join(__dirname, "./server/public/js"),
     filename: "[name].js"
   },
+  devtool: 'source-map',
   resolve: { extensions: ['.ts', '.js'] },
   module: {
     loaders: [

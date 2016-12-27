@@ -16,3 +16,6 @@ docs/mocks_dist/*.html
 
 # editor
 .vscode
+
+server/public/fonts
+server/public/vendor
