@@ -13,7 +13,7 @@
     "bundle": "webpack -p",
     "bundle:dev": "webpack --config webpack.config.dev.js -d",
     "bundle:w": "webpack --config webpack.config.dev.js -w",
-    "vendor": "cp node_modules/materialize-css/dist/css/materialize.css server/public/vendor/ && cp node_modules/jquery/dist/jquery.js server/public/vendor/ && cp node_modules/materialize-css/dist/js/materialize.js server/public/vendor/",
+    "vendor": "cp node_modules/materialize-css/dist/css/materialize.css server/public/vendor/ && cp -r node_modules/materialize-css/dist/fonts server/public/fonts && cp node_modules/jquery/dist/jquery.js server/public/vendor/ && cp node_modules/materialize-css/dist/js/materialize.js server/public/vendor/",
     "lint": "npm run lint:server && npm run lint:front",
     "lint:front": "tslint \"src/**/*.ts\"",
     "lint:server": "eslint ./server/*.js ./server/routes/**",
