@@ -3,6 +3,7 @@ const update = require('./update');
 const profile = require('./profile');
 const circle = require('./circle');
 const event = require('./event');
+const copy = require('./copy');
 
 api.post('/update', update.post);
 
@@ -19,5 +20,6 @@ api.post('/event', event.post);
 api.put('/event/:id', event.put);
 api.delete('/event/:id', event.delete);
 
+api.put('/copy', copy.put);
 
 module.exports = { api };
