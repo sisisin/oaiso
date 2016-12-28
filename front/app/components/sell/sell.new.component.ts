@@ -1,16 +1,15 @@
 import { Component } from '@angular/core';
+import { CopyEntity } from '../../entity/copy.entity';
 
 @Component({
   selector: '[appSellNew]',
   templateUrl: './sell.new.component.html',
 })
 export class SellNewComponent {
-  title = '';
-  circulation = '0';
-  price = '0';
+  copy = new CopyEntity('', '0', '0');
 
   onClick() {
     // todo: put request
-    console.log(this.title);
+    console.log(this.copy);
   }
 }
