@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-
+import { CopyEntity } from '../entity/copy.entity';
 @Injectable()
 export class CopyStoreService {
   public copies = [
-    { title: 'ほげ', circulation: 19, price: 500 },
-    { title: 'fuga', circulation: 1, price: 100 },
+    new CopyEntity('ほげ', '19', '500'),
+    new CopyEntity('fuga', '1', '100'),
   ];
 }

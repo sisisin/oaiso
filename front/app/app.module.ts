@@ -16,8 +16,11 @@ import {
   InviteComponent,
   SummaryComponent
 } from './components';
-import { CopyStoreService } from './services/copy.store.service';
-import { CopyEditStoreService } from './services/copy.edit.store.service';
+import {
+  CopyStoreService,
+  CopyEditStoreService,
+  CopyService
+} from './services/';
 
 @NgModule({
   declarations: [
@@ -39,7 +42,8 @@ import { CopyEditStoreService } from './services/copy.edit.store.service';
   ],
   providers: [
     CopyStoreService,
-    CopyEditStoreService
+    CopyEditStoreService,
+    CopyService
   ],
   bootstrap: [RootComponent]
 })
