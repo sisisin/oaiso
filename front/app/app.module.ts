@@ -8,6 +8,7 @@ import { routing } from './app.routing';
 import {
   RootComponent,
   SellComponent,
+  SellCopyDisplayComponent,
   SellEditComponent,
   SellFABComponent,
   SellNewComponent,
@@ -16,11 +17,13 @@ import {
   SummaryComponent
 } from './components';
 import { CopyStoreService } from './services/copy.store.service';
+import { CopyEditStoreService } from './services/copy.edit.store.service';
 
 @NgModule({
   declarations: [
     RootComponent,
     SellComponent,
+    SellCopyDisplayComponent,
     SellEditComponent,
     SellFABComponent,
     SellNewComponent,
@@ -35,7 +38,8 @@ import { CopyStoreService } from './services/copy.store.service';
     routing
   ],
   providers: [
-    CopyStoreService
+    CopyStoreService,
+    CopyEditStoreService
   ],
   bootstrap: [RootComponent]
 })

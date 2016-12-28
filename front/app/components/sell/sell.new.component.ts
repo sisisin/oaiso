@@ -1,15 +1,24 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { CopyEntity } from '../../entity/copy.entity';
+import { CopyEditStoreService } from '../../services/copy.edit.store.service';
 
 @Component({
   selector: '[appSellNew]',
   templateUrl: './sell.new.component.html',
 })
-export class SellNewComponent {
-  copy = new CopyEntity('', '0', '0');
+export class SellNewComponent implements OnInit {
+  @Input() copy: CopyEntity;
+  @Input() index: number;
 
-  onClick() {
-    // todo: put request
+  constructor(private copyEditStoreService: CopyEditStoreService){}
+  ngOnInit() {
+    if(this.copy == null) {
+      this.copy = new CopyEntity('', '0', '0');
+    }
+  }
+  onSave() {
+    this.copyEditStoreService.editModeIndex = null;
+    // todo: request update
     console.log(this.copy);
   }
 }
