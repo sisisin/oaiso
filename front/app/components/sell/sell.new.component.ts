@@ -10,9 +10,9 @@ export class SellNewComponent implements OnInit {
   @Input() copy: CopyEntity;
   @Input() index: number;
 
-  constructor(private copyEditStoreService: CopyEditStoreService){}
+  constructor(private copyEditStoreService: CopyEditStoreService) { }
   ngOnInit() {
-    if(this.copy == null) {
+    if (this.copy == null) {
       this.copy = new CopyEntity('', '0', '0');
     }
   }

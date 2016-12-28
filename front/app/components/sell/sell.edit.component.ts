@@ -14,4 +14,7 @@ export class SellEditComponent {
   onCancel() {
     this.copyEditStoreService.editModeIndex = null;
   }
+  onAddCopy() {
+    this.copyEditStoreService.editModeIndex = this.copyStoreService.copies.length;
+  }
 }

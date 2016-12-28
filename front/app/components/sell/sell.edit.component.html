@@ -29,7 +29,14 @@
       </ng-container>
     </tbody>
     <tfoot>
-      <tr appSellNew></tr>
+      <tr *ngIf="copyEditStoreService.isEditMode === false">
+        <td colspan="4" class="right-align">
+          <a class="btn-floating waves-effect waves-light btn" (click)="onAddCopy()">
+            <i class="material-icons">add</i>
+          </a>
+        </td>
+      </tr>
+      <tr *ngIf="copyEditStoreService.isEditMode && copyEditStoreService.editModeIndex === copyStoreService.copies.length" appSellNew [index]="copyStoreService.copies.length"></tr>
     </tfoot>
   </table>
 </div>
