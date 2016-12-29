@@ -62,6 +62,7 @@ app.use('/api', api);
 
 // catch all route and forward index
 app.use((req, res, next) => {
+  // todo circle registration check
   res.render('index', { title: appTitle });
 });
 
