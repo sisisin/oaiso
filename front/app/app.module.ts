@@ -14,12 +14,14 @@ import {
   SellNewComponent,
   TwitterComponent,
   InviteComponent,
-  SummaryComponent
+  SummaryComponent,
 } from './components';
 import {
   CopyStoreService,
   CopyEditStoreService,
-  CopyService
+  CopyService,
+  SellStoreService,
+  SellService,
 } from './services/';
 
 @NgModule({
@@ -32,18 +34,20 @@ import {
     SellNewComponent,
     TwitterComponent,
     InviteComponent,
-    SummaryComponent
+    SummaryComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    routing
+    routing,
   ],
   providers: [
     CopyStoreService,
     CopyEditStoreService,
-    CopyService
+    CopyService,
+    SellStoreService,
+    SellService,
   ],
   bootstrap: [RootComponent]
 })

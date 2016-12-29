@@ -1,12 +1,12 @@
 <div class="row">
   <div class="col s6">￥
     <div class="input-field inline">
-      <input id="sum-price" type="text" disabled="disabled" value="1000" />
-      <label for="#sum-price">合計</label>
+      <input id="sum-price" type="text" disabled="disabled" [(ngModel)]="sum" />
+      <!--<label for="#sum-price">合計</label>-->
     </div>
   </div>
   <div class="col s6 right-align">
-    <a class="waves-effect waves-light btn input-field">
+    <a class="waves-effect waves-light btn input-field" [ngClass]="{ disabled: isSelectedNothing() }" (click)="onSell()">
       <i class="material-icons left">send</i> sold
     </a>
   </div>

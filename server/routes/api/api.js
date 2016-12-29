@@ -4,6 +4,7 @@ const profile = require('./profile');
 const circle = require('./circle');
 const event = require('./event');
 const copy = require('./copy');
+const sell = require('./sell');
 
 api.post('/update', update.post);
 
@@ -26,5 +27,7 @@ api.get('/copy/:copy_id', copy.get);
 api.post('/copy', copy.post);
 api.put('/copy/:copy_id', copy.put);
 api.delete('/copy/:copy_id', copy.del);
+
+api.post('/sell', sell.post);
 
 module.exports = { api };
