@@ -1,5 +1,5 @@
 <nav role="navigation" class="blue lighten-1">
-  <div class="nav-wrapper container">
+  <div class="nav-wrapper container" [hidden]="isRegisterd === false">
     <a id="logo-container" class="brand-logo">OAISO</a>
     <ul class="right hide-on-med-and-down">
       <li><a href="#">Navbar Link</a></li>
@@ -17,6 +17,10 @@
       <li routerLinkActive="active"><a routerLink="/circle">サークル設定</a></li>
     </ul>
     <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+  </div>
+
+  <div class="nav-wrapper container" [hidden]="isRegisterd === true">
+    <a id="logo-container" class="brand-logo">OAISO</a>
   </div>
 </nav>
 <router-outlet></router-outlet>

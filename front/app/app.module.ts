@@ -19,6 +19,7 @@ import {
 } from './components';
 import {
   CircleService,
+  CircleStoreService,
   CopyStoreService,
   CopyEditStoreService,
   CopyService,
@@ -47,6 +48,7 @@ import {
   ],
   providers: [
     CircleService,
+    CircleStoreService,
     CopyStoreService,
     CopyEditStoreService,
     CopyService,
