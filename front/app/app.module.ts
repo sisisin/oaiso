@@ -24,6 +24,7 @@ import {
   CopyStoreService,
   CopyEditStoreService,
   CopyService,
+  ProfileService,
   SellStoreService,
   SellService,
 } from './services/';
@@ -54,6 +55,7 @@ import {
     CopyStoreService,
     CopyEditStoreService,
     CopyService,
+    ProfileService,
     SellStoreService,
     SellService,
   ],
