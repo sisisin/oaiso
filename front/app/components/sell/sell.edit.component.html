@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="section">
+    <div class="row">
+      <div class="col s12 right-align" *ngIf="copyEditStoreService.editModeIndex !== null">
+        <a class="waves-effect waves-light btn input-field" (click)="onCancel()">
+          <i class="material-icons left">clear</i>cancel
+        </a>
+      </div>
+      <div class="col s12 left-align" *ngIf="copyEditStoreService.editModeIndex === null">
+        <a class="waves-effect waves-light btn input-field" routerLink="/sell">
+          <i class="material-icons left">keyboard_arrow_left</i>back
+        </a>
+      </div>
+    </div>
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th>タイトル</th>
+        <th>残り部数</th>
+        <th>価格</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngFor="let copy of copyStoreService.copies; let i = index;">
+        <tr *ngIf="copyEditStoreService.editModeIndex !== i" appSellDisplay [copy]="copy" [index]="i"></tr>
+        <tr *ngIf="copyEditStoreService.editModeIndex === i" appSellNew [givenCopy]="copy" [index]="i"></tr>
+      </ng-container>
+    </tbody>
+    <tfoot>
+      <tr *ngIf="copyEditStoreService.isEditMode === false">
+        <td colspan="4" class="right-align">
+          <a class="btn-floating waves-effect waves-light btn" (click)="onAddCopy()">
+            <i class="material-icons">add</i>
+          </a>
+        </td>
+      </tr>
+      <tr *ngIf="copyEditStoreService.isEditMode && copyEditStoreService.editModeIndex === copyStoreService.copies.length" appSellNew [index]="copyStoreService.copies.length"></tr>
+    </tfoot>
+  </table>
+</div>

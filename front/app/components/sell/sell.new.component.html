@@ -1,0 +1,26 @@
+<td>
+  <div class="input-field">
+    <input id="title" class="validate" type="text" [(ngModel)]="copy.title" required />
+    <label for="title" data-error="タイトルないぞい"></label>
+  </div>
+</td>
+<td>
+  <div class="input-field">
+    <input id="circulation" class="validate" pattern="\d+" type="text" [(ngModel)]="copy.circulation" />
+    <label for="circulation" data-error="数字のみでたのまい"></label>
+  </div>
+</td>
+<td>
+  <div class="input-field">
+    <input id="price" class="validate" pattern="\d+" type="text" [(ngModel)]="copy.price" />
+    <label for="price" data-error="数字のみでたのまい"></label>
+  </div>
+</td>
+<td class="right-align">
+  <a class="btn-floating waves-effect waves-light btn" (click)="onSave()">
+    <i class="material-icons">save</i>
+  </a>
+  <a class="btn-floating waves-effect waves-light btn" (click)="onDelete()">
+    <i class="tiny material-icons">delete</i>
+  </a>
+</td>

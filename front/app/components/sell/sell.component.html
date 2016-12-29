@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="section">
+    <app-summary></app-summary>
+  </div>
+  <table class="uk-table">
+    <thead>
+      <tr>
+        <th>タイトル</th>
+        <th>残り部数</th>
+        <th>価格</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let copy of copyStoreService.copies">
+        <td>{{copy.title}}</td>
+        <td>{{copy.circulation}}</td>
+        <td>{{copy.price}}</td>
+        <td> <a><i class="material-icons">add_circle_outline</i></a><a><i class="material-icons">remove_circle_outline</i></a></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<app-sell-fab></app-sell-fab>

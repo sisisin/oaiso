@@ -5,17 +5,34 @@ import { HttpModule } from '@angular/http';
 
 import { routing } from './app.routing';
 
-import { AppComponent } from './app.component';
-import { SellComponent } from './sell/sell.component';
-import { TwitterComponent } from './twitter/twitter.component';
-import { InviteComponent } from './invite/invite.component';
+import {
+  RootComponent,
+  SellComponent,
+  SellCopyDisplayComponent,
+  SellEditComponent,
+  SellFABComponent,
+  SellNewComponent,
+  TwitterComponent,
+  InviteComponent,
+  SummaryComponent
+} from './components';
+import {
+  CopyStoreService,
+  CopyEditStoreService,
+  CopyService
+} from './services/';
 
 @NgModule({
   declarations: [
-    AppComponent,
+    RootComponent,
     SellComponent,
+    SellCopyDisplayComponent,
+    SellEditComponent,
+    SellFABComponent,
+    SellNewComponent,
     TwitterComponent,
-    InviteComponent
+    InviteComponent,
+    SummaryComponent
   ],
   imports: [
     BrowserModule,
@@ -23,7 +40,11 @@ import { InviteComponent } from './invite/invite.component';
     HttpModule,
     routing
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    CopyStoreService,
+    CopyEditStoreService,
+    CopyService
+  ],
+  bootstrap: [RootComponent]
 })
 export class AppModule { }
