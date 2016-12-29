@@ -21,7 +21,10 @@ api.put('/event/:event_id', event.put);
 api.delete('/event/:event_id', event.delete);
 
 api.param('copy_id', copy.param);
+api.get('/copy', copy.list);
+api.get('/copy/:copy_id', copy.get);
 api.post('/copy', copy.post);
 api.put('/copy/:copy_id', copy.put);
+api.delete('/copy/:copy_id', copy.del);
 
 module.exports = { api };

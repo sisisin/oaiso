@@ -3,6 +3,17 @@ const param = (req, res, next, id) => {
   next();
 };
 
+const get = (req, res) => {
+  res.json({ id: 42, title: 'forty-two', circulation: 420, price: 4200 });
+};
+
+const list = (req, res) => {
+  res.json([
+    { id: 0, title: 'ほげ', circulation: 19, price: 500 },
+    { id: 1, title: 'fugaa', circulation: 1, price: 100 },
+  ]);
+};
+
 const put = (req, res) => {
   const {title, circulation, price} = req.body;
   res.json({ id: req.id, title, circulation, price });
@@ -16,4 +27,7 @@ const post = (req, res) => {
   res.json({ id: 42, title, circulation, price });
 };
 
-module.exports = { param, post, put };
+const del = (req, res) => {
+  res.json(null);
+};
+module.exports = { param, get, list, post, put, del };
