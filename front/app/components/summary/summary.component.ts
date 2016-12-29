@@ -25,7 +25,12 @@ export class SummaryComponent {
   onSell() {
     const selected = this.sellStoreService.selected;
     const now = new Date;
-    const body = this.copyStoreService.copies.map((c, i) => new SellEntity(c.id, +c.price * selected[i], selected[i], now));
+    const body = this.sellStoreService.selected
+      .filter(num => num > 0)
+      .map((num, i) => {
+        const c = this.copyStoreService.copies[i];
+        return new SellEntity(c.id, +c.price * num, num, now);
+      });
     this.sellService.bulkCreate(body)
       .toPromise()
       .then(res => {
