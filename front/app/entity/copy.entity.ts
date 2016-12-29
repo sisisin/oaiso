@@ -3,5 +3,6 @@ export class CopyEntity {
     public title: string,
     public circulation: string,
     public price: string,
+    public id: string = null,
   ) { }
 }

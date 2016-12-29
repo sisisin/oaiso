@@ -25,7 +25,7 @@
     <tbody>
       <ng-container *ngFor="let copy of copyStoreService.copies; let i = index;">
         <tr *ngIf="copyEditStoreService.editModeIndex !== i" appSellDisplay [copy]="copy" [index]="i"></tr>
-        <tr *ngIf="copyEditStoreService.editModeIndex === i" appSellNew [copy]="copy" [index]="i"></tr>
+        <tr *ngIf="copyEditStoreService.editModeIndex === i" appSellNew [givenCopy]="copy" [index]="i"></tr>
       </ng-container>
     </tbody>
     <tfoot>

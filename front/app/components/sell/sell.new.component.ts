@@ -9,28 +9,54 @@ import { CopyService } from '../../services/copy.service';
   templateUrl: './sell.new.component.html',
 })
 export class SellNewComponent implements OnInit {
-  @Input() copy: CopyEntity;
+  @Input() givenCopy: CopyEntity;
   @Input() index: number;
+  copy: CopyEntity;
 
   constructor(
     private copyStoreService: CopyStoreService,
     private copyEditStoreService: CopyEditStoreService,
     private copyService: CopyService,
   ) { }
+
   ngOnInit() {
-    if (this.copy == null) {
+    if (this.givenCopy == null) {
       this.copy = new CopyEntity('', '0', '0');
+    } else {
+      const {title, circulation, price, id} = this.givenCopy;
+      this.copy = new CopyEntity(title, circulation, price, id);
     }
   }
+
   onSave() {
-    this.copyService
-      .put(this.copy)
+    if (this.copy.id === null) {
+      this.create();
+    } else {
+      this.update();
+    }
+  }
+
+  private create() {
+    return this.copyService
+      .create(this.copy)
       .subscribe(res => {
-        const {title, circulation, price}: { title: string, circulation: string, price: string } = res.json();
-        this.copyStoreService.copies.push(new CopyEntity(title, circulation,price));
+        const {title, circulation, price}: { title: string; circulation: string; price: string; } = res.json();
+        this.copyStoreService.copies.push(new CopyEntity(title, circulation, price));
         this.copyEditStoreService.editModeIndex = null;
         // todo: request update
         console.log('done~');
+      });
+  }
+
+  private update() {
+    return this.copyService
+      .update(this.copy)
+      .subscribe(res => {
+        const {id, title, circulation, price}: { id: string; title: string; circulation: string; price: string; } = res.json();
+        this.copyStoreService.copies = this.copyStoreService.copies.map(copy => {
+          return copy.id === id ? new CopyEntity(title, circulation, price, id) : copy;
+        });
+        this.copyEditStoreService.editModeIndex = null;
       });
   }
 }
