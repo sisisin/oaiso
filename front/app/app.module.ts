@@ -18,6 +18,7 @@ import {
   CircleComponent,
 } from './components';
 import {
+  CircleService,
   CopyStoreService,
   CopyEditStoreService,
   CopyService,
@@ -45,6 +46,7 @@ import {
     routing,
   ],
   providers: [
+    CircleService,
     CopyStoreService,
     CopyEditStoreService,
     CopyService,
