@@ -36,6 +36,20 @@ export class SellNewComponent implements OnInit {
     }
   }
 
+  onDelete() {
+    return this.copyService
+      .delete(this.copy)
+      .subscribe(res => {
+        this.copyStoreService.copies = this.copyStoreService.copies.filter(ce => ce.id !== this.copy.id);
+        Materialize.toast('deleted', 5000);
+      }, err => {
+        console.log(err);
+        // todo toasting this err
+      }).add(() => {
+        this.copyEditStoreService.editModeIndex = null;
+      });
+  }
+
   private create() {
     return this.copyService
       .create(this.copy)
