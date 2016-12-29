@@ -15,6 +15,7 @@ import {
   TwitterComponent,
   InviteComponent,
   SummaryComponent,
+  CircleComponent,
 } from './components';
 import {
   CopyStoreService,
@@ -35,6 +36,7 @@ import {
     TwitterComponent,
     InviteComponent,
     SummaryComponent,
+    CircleComponent,
   ],
   imports: [
     BrowserModule,

@@ -6,6 +6,7 @@ import {
   SellEditComponent,
   TwitterComponent,
   InviteComponent,
+  CircleComponent,
 } from './components';
 
 const appRoutes: Routes = [
@@ -14,6 +15,7 @@ const appRoutes: Routes = [
   { path: 'sell/edit', component: SellEditComponent },
   { path: 'twitter', component: TwitterComponent },
   { path: 'invite', component: InviteComponent },
+  { path: 'circle', component: CircleComponent },
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(appRoutes);
