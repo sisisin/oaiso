@@ -9,9 +9,10 @@ export class CopyStoreService {
   constructor(private copyService: CopyService) { }
 
   init() {
-    this.copyService
+    return this.copyService
       .list()
-      .subscribe(res => {
+      .toPromise()
+      .then(res => {
         const list = <CopyEntity[]>res.json();
         this.copies = list.map(e => new CopyEntity(e.title, e.circulation, e.price, e.id));
       });
