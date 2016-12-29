@@ -12,3 +12,8 @@ database:
   post:
     - ./setup.sh
     - cd ./server; $(npm bin)/sequelize db:migrate --env test
+
+test:
+  override:
+    - mkdir server/public/vendor && npm run build # front
+    - npm test
