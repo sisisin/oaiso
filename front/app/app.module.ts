@@ -16,6 +16,7 @@ import {
   InviteComponent,
   SummaryComponent,
   CircleComponent,
+  NavComponent,
 } from './components';
 import {
   CircleService,
@@ -39,6 +40,7 @@ import {
     InviteComponent,
     SummaryComponent,
     CircleComponent,
+    NavComponent,
   ],
   imports: [
     BrowserModule,

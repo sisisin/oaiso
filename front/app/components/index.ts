@@ -8,3 +8,4 @@ export * from './twitter/twitter.component';
 export * from './invite/invite.component';
 export * from './summary/summary.component';
 export * from './circle/circle.component';
+export * from './nav/nav.component';
