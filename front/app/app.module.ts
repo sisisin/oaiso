@@ -15,8 +15,11 @@ import {
   TwitterComponent,
   InviteComponent,
   SummaryComponent,
+  CircleComponent,
 } from './components';
 import {
+  CircleService,
+  CircleStoreService,
   CopyStoreService,
   CopyEditStoreService,
   CopyService,
@@ -35,6 +38,7 @@ import {
     TwitterComponent,
     InviteComponent,
     SummaryComponent,
+    CircleComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,6 +47,8 @@ import {
     routing,
   ],
   providers: [
+    CircleService,
+    CircleStoreService,
     CopyStoreService,
     CopyEditStoreService,
     CopyService,
