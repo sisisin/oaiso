@@ -16,6 +16,7 @@ import {
   InviteComponent,
   SummaryComponent,
   CircleComponent,
+  NavComponent,
 } from './components';
 import {
   CircleService,
@@ -23,6 +24,7 @@ import {
   CopyStoreService,
   CopyEditStoreService,
   CopyService,
+  ProfileService,
   SellStoreService,
   SellService,
 } from './services/';
@@ -39,6 +41,7 @@ import {
     InviteComponent,
     SummaryComponent,
     CircleComponent,
+    NavComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,6 +55,7 @@ import {
     CopyStoreService,
     CopyEditStoreService,
     CopyService,
+    ProfileService,
     SellStoreService,
     SellService,
   ],
