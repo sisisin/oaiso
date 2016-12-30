@@ -19,6 +19,7 @@
         <th>タイトル</th>
         <th>残り部数</th>
         <th>価格</th>
+        <th>初期費用</th>
         <th></th>
       </tr>
     </thead>
@@ -30,7 +31,7 @@
     </tbody>
     <tfoot>
       <tr *ngIf="copyEditStoreService.isEditMode === false">
-        <td colspan="4" class="right-align">
+        <td colspan="5" class="right-align">
           <a class="btn-floating waves-effect waves-light btn" (click)="onAddCopy()">
             <i class="material-icons">add</i>
           </a>

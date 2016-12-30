@@ -16,7 +16,11 @@ module.exports = function (sequelize, DataTypes) {
     price: {
       allowNull: false,
       type: DataTypes.INTEGER
-    }
+    },
+    cost: {
+      allowNull: false,
+      type: DataTypes.INTEGER
+    },
   }, {
       classMethods: {
         associate: function (models) {

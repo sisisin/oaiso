@@ -29,5 +29,6 @@ api.put('/copy/:copy_id', copy.put);
 api.delete('/copy/:copy_id', copy.del);
 
 api.post('/sell', sell.post);
+api.get('/sell', sell.getSum);
 
 module.exports = { api };
