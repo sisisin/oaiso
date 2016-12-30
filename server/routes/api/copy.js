@@ -17,9 +17,9 @@ const get = (req, res) => {
 const list = (req, res) => {
   const query = `
     select c.*, cir.twitter_id, (c.circulation - sum(s.num_of_sold)) as present_circulation
-    from "Copies" as c 
-      inner join "Sells" as s on c.id = s.copy_id
-      inner join "Circles" as cir on c.circle_id = cir.id
+    from "Circles" as cir
+      left join "Copies" as c on cir.id = c.circle_id
+      left join "Sells" as s on c.id = s.copy_id
     where cir.twitter_id = '${req.session.passport.user.id}'
     group by c.id, cir.twitter_id
 `;
