@@ -1,5 +1,9 @@
 extends layout
 
 block content
-  h1= title
-  a(href='/login/oauth') Twitterでログイン
+  nav(class='blue lighten-1' role='navigation')
+    div(class='nav-wrapper container')
+      a#logo-container.brand-logo= title
+  .container
+    .section
+      a(class='waves-effect waves-light btn' href='/login/oauth') Twitterでログイン
