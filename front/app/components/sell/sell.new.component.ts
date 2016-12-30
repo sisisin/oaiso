@@ -24,7 +24,7 @@ export class SellNewComponent implements OnInit {
       this.copy = new CopyEntity('', '0', '0', '0', '0');
     } else {
       const {title, circulation, price, cost, id, present_circulation} = this.givenCopy;
-      this.copy = new CopyEntity(title, circulation, price, cost, id);
+      this.copy = new CopyEntity(title, circulation, price, present_circulation, cost, id);
     }
   }
 
