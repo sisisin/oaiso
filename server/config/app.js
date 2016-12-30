@@ -18,7 +18,7 @@ const PassportOption = {
 };
 
 module.exports = {
-  appTitle: '残り何部ですか'
+  appTitle: 'OAISO'
   , PassportOption
   , RedisOption
 };
