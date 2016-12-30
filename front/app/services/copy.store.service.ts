@@ -14,7 +14,7 @@ export class CopyStoreService {
       .toPromise()
       .then(res => {
         const list = <CopyEntity[]>res.json();
-        this.copies = list.map(e => new CopyEntity(e.title, e.circulation, e.price, e.id));
+        this.copies = list.map(e => new CopyEntity(e.title, e.circulation, e.price, e.present_circulation, e.id));
       });
   }
 }

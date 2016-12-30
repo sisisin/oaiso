@@ -17,7 +17,7 @@
           {{copy.title}}
           <span class="new badge sell-selected-badge" data-badge-caption="" *ngIf="!isSelectedNone(i)">{{sellStoreService.selected[i]}}</span>
         </td>
-        <td>{{copy.circulation}}</td>
+        <td>{{copy.present_circulation}}</td>
         <td>{{copy.price}}</td>
         <td class="right-align">
           <a class="waves-effect waves-light btn-floating" [ngClass]="{ disabled: isSelectedJustAsCirculation(i) }" (click)="onAdd(i)">
