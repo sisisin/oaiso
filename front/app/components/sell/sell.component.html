@@ -15,15 +15,15 @@
       <tr *ngFor="let copy of copyStoreService.copies; let i = index;">
         <td>
           {{copy.title}}
-          <span class="new badge sell-selected-badge" data-badge-caption="" *ngIf="!isSelectedNone(copy.id)">{{sellStoreService.selected[i]}}</span>
+          <span class="new badge sell-selected-badge" data-badge-caption="" *ngIf="!isSelectedNone(i)">{{sellStoreService.selected[i]}}</span>
         </td>
         <td>{{copy.circulation}}</td>
         <td>{{copy.price}}</td>
         <td class="right-align">
-          <a class="waves-effect waves-light btn-floating" [ngClass]="{ disabled: isSelectedJustAsCirculation(copy.id) }" (click)="onAdd(copy.id)">
+          <a class="waves-effect waves-light btn-floating" [ngClass]="{ disabled: isSelectedJustAsCirculation(i) }" (click)="onAdd(i)">
             <i class="material-icons">add</i>
           </a>
-          <a class="waves-effect waves-light btn-floating" [ngClass]="{ disabled: isSelectedNone(copy.id) }" (click)="onMinus(copy.id)">
+          <a class="waves-effect waves-light btn-floating" [ngClass]="{ disabled: isSelectedNone(i) }" (click)="onMinus(i)">
             <i class="material-icons">remove</i>
           </a>
         </td>
