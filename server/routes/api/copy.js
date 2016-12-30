@@ -30,24 +30,25 @@ const list = (req, res) => {
 };
 
 const put = (req, res) => {
-  const {title, circulation, price} = req.body;
+  const {title, circulation, price, cost} = req.body;
 
-  req.copy.set({ title, circulation, price });
+  req.copy.set({ title, circulation, price, cost });
   req.copy.save()
     .then(c => { res.json(c.toJSON()); });
 };
 
 const post = (req, res) => {
-  const {title, circulation, price} = req.body;
+  const {title, circulation, price, cost} = req.body;
   if (title == null || title === '') return res.json(null);
   if (circulation == null || circulation === '') return res.json(null);
   if (price == null || price === '') return res.json(null);
+  if (cost == null || cost === '') return res.json(null);
 
   // todo: join
   db.Circle.findOne({ where: { twitter_id: req.session.passport.user.id } })
     .then(c => {
       return db.Copy.create({
-        circle_id: c.id, title, circulation, price
+        circle_id: c.id, title, circulation, price, cost
       });
     })
     .then(c => { res.json(c && c.toJSON()); });
