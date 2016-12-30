@@ -37,7 +37,7 @@ export class SummaryComponent {
       .then(res => {
         this.copyStoreService.copies = this.copyStoreService.copies.map((c, i) => {
           if (selected[i] === 0) return c;
-          return new CopyEntity(c.title, (+c.circulation - selected[i]).toString(), c.price, c.id);
+          return new CopyEntity(c.title, (+c.circulation - selected[i]).toString(), c.price, c.present_circulation, c.id);
         });
         this.sellStoreService.selected = this.copyStoreService.copies.map(c => 0);
         if(this.copyStoreService.copies.reduce((prev, curr) => prev + (+curr.circulation), 0) === 0) {

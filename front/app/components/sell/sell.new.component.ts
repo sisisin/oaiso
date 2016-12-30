@@ -21,10 +21,10 @@ export class SellNewComponent implements OnInit {
 
   ngOnInit() {
     if (this.givenCopy == null) {
-      this.copy = new CopyEntity('', '0', '0');
+      this.copy = new CopyEntity('', '0', '0', '0');
     } else {
-      const {title, circulation, price, id} = this.givenCopy;
-      this.copy = new CopyEntity(title, circulation, price, id);
+      const {title, circulation, price, id, present_circulation} = this.givenCopy;
+      this.copy = new CopyEntity(title, circulation, price, present_circulation, id);
     }
   }
 
@@ -54,8 +54,8 @@ export class SellNewComponent implements OnInit {
     return this.copyService.create(this.copy)
       .toPromise()
       .then(res => {
-        const {title, circulation, price, id}: { title: string; circulation: string; price: string; id: string; } = res.json();
-        this.copyStoreService.copies.push(new CopyEntity(title, circulation, price, id));
+        const {title, circulation, price, id, present_circulation}: { title: string; circulation: string; price: string; id: string; present_circulation: string;} = res.json();
+        this.copyStoreService.copies.push(new CopyEntity(title, circulation, price, present_circulation, id));
         this.copyEditStoreService.editModeIndex = null;
       });
   }
@@ -64,9 +64,9 @@ export class SellNewComponent implements OnInit {
     return this.copyService
       .update(this.copy)
       .subscribe(res => {
-        const {id, title, circulation, price}: { id: string; title: string; circulation: string; price: string; } = res.json();
+        const {id, title, circulation, price, present_circulation}: { id: string; title: string; circulation: string; price: string; present_circulation: string; } = res.json();
         this.copyStoreService.copies = this.copyStoreService.copies.map(copy => {
-          return copy.id === id ? new CopyEntity(title, circulation, price, id) : copy;
+          return copy.id === id ? new CopyEntity(title, circulation, price,present_circulation , id) : copy;
         });
         this.copyEditStoreService.editModeIndex = null;
       });
