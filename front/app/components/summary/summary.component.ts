@@ -25,12 +25,13 @@ export class SummaryComponent {
   onSell() {
     const selected = this.sellStoreService.selected;
     const now = new Date;
-    const body = this.sellStoreService.selected
-      .filter(num => num > 0)
-      .map((num, i) => {
-        const c = this.copyStoreService.copies[i];
-        return new SellEntity(c.id, +c.price * num, num, now);
-      });
+
+    // FIXME: need refactoring data structure...
+    const filteredCopies = this.copyStoreService.copies
+      .filter((c, i) => selected[i] > 0);
+    const filteredSelected = selected.filter((num, i) => num > 0);
+    const body = filteredCopies
+      .map((c, i) => new SellEntity(c.id, +c.price * filteredSelected[i], filteredSelected[i], now));
     this.sellService.bulkCreate(body)
       .toPromise()
       .then(res => {
