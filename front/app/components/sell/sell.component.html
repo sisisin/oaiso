@@ -39,9 +39,9 @@
       <div class="col s8">売上</div>
       <div class="col s4">{{totalSold}}円</div>
     </div>
-    <div class="row red-text">
-      <div class="col s8">赤字</div>
-      <div class="col s4">- {{deficit}}円</div>
+    <div class="row" [ngClass]="{ 'red-text': deficit > 0 }">
+      <div class="col s8">収支</div>
+      <div class="col s4">{{-deficit}}円</div>
     </div>
   </div>
 </div>
