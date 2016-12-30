@@ -15,11 +15,17 @@ const get = (req, res) => {
 };
 
 const list = (req, res) => {
-  // todo: join
-  db.Circle.findOne({ where: { twitter_id: req.session.passport.user.id } })
-    .then(c => db.Copy.findAll({ where: { circle_id: c.id } }))
+  const query = `
+    select c.*, cir.twitter_id, (c.circulation - sum(s.num_of_sold)) as present_circulation
+    from "Copies" as c 
+      inner join "Sells" as s on c.id = s.copy_id
+      inner join "Circles" as cir on c.circle_id = cir.id
+    where cir.twitter_id = '${req.session.passport.user.id}'
+    group by c.id, cir.twitter_id
+`;
+  db.sequelize.query(query, { type: db.sequelize.QueryTypes.SELECT })
     .then(copies => {
-      res.json(copies.map(c => c.toJSON()));
+      res.json(copies);
     });
 };
 
