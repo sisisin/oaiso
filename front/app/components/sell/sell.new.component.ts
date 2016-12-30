@@ -51,14 +51,12 @@ export class SellNewComponent implements OnInit {
   }
 
   private create() {
-    return this.copyService
-      .create(this.copy)
-      .subscribe(res => {
-        const {title, circulation, price}: { title: string; circulation: string; price: string; } = res.json();
-        this.copyStoreService.copies.push(new CopyEntity(title, circulation, price));
+    return this.copyService.create(this.copy)
+      .toPromise()
+      .then(res => {
+        const {title, circulation, price, id}: { title: string; circulation: string; price: string; id: string; } = res.json();
+        this.copyStoreService.copies.push(new CopyEntity(title, circulation, price, id));
         this.copyEditStoreService.editModeIndex = null;
-        // todo: request update
-        console.log('done~');
       });
   }
 
