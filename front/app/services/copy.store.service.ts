@@ -17,4 +17,9 @@ export class CopyStoreService {
         this.copies = list.map(e => new CopyEntity(e.title, e.circulation, e.price, e.present_circulation, e.cost, e.id));
       });
   }
+
+  calcSumCost() {
+    if(!this.copies) return 0;
+    return this.copies.reduce((prev, curr) => prev + +curr.cost, 0);
+  }
 }

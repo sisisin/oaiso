@@ -9,4 +9,8 @@ export class SellService {
   bulkCreate(body: SellEntity[]) {
     return this.http.post('/api/sell', body);
   }
+
+  getSummary() {
+    return this.http.get('/api/sell');
+  }
 }
