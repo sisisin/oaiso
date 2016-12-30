@@ -16,6 +16,12 @@
     <label for="price" data-error="数字のみでたのまい"></label>
   </div>
 </td>
+<td>
+  <div class="input-field">
+    <input id="cost" class="validate" pattern="\d+" type="text" [(ngModel)]="copy.cost" />
+    <label for="cost" data-error="数字のみでたのまい"></label>
+  </div>
+</td>
 <td class="right-align">
   <a class="btn-floating waves-effect waves-light btn" (click)="onSave()">
     <i class="material-icons">save</i>
