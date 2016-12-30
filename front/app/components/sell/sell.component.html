@@ -17,7 +17,7 @@
           {{copy.title}}
           <span class="new badge sell-selected-badge" data-badge-caption="" *ngIf="!isSelectedNone(i)">{{sellStoreService.selected[i]}}</span>
         </td>
-        <td>{{copy.present_circulation}}</td>
+        <td>{{copy.present_circulation ? copy.present_circulation : copy.circulation}}</td>
         <td>{{copy.price}}</td>
         <td class="right-align">
           <a class="waves-effect waves-light btn-floating" [ngClass]="{ disabled: isSelectedJustAsCirculation(i) }" (click)="onAdd(i)">
@@ -30,18 +30,18 @@
       </tr>
     </tbody>
   </table>
-  <div class="section right-align">
+  <div class="section">
     <div class="row">
-      <div class="col s8">初期コスト</div>
-      <div class="col s4">{{copyStoreService.calcSumCost()}}円</div>
+      <div class="col s4">初期コスト</div>
+      <div class="col s8">{{copyStoreService.calcSumCost()}}円</div>
     </div>
     <div class="row">
-      <div class="col s8">売上</div>
-      <div class="col s4">{{totalSold}}円</div>
+      <div class="col s4">売上</div>
+      <div class="col s8">{{totalSold}}円</div>
     </div>
     <div class="row" [ngClass]="{ 'red-text': deficit > 0 }">
-      <div class="col s8">収支</div>
-      <div class="col s4">{{-deficit}}円</div>
+      <div class="col s4">収支</div>
+      <div class="col s8">{{-deficit}}円</div>
     </div>
   </div>
 </div>
