@@ -1,4 +1,13 @@
-export class CopyEntity {
+export interface ICopyEntity {
+  title: string;
+  circulation: string;
+  price: string;
+  present_circulation: string;
+  cost: string;
+  id: string;
+}
+
+export class CopyEntity implements ICopyEntity {
   constructor(
     public title: string,
     public circulation: string,

@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { CopyEntity } from '../../entity/copy.entity';
+import { CopyEntity, ICopyEntity } from '../../entity/copy.entity';
 import { CopyStoreService } from '../../services/copy.store.service';
 import { CopyEditStoreService } from '../../services/copy.edit.store.service';
 import { CopyService } from '../../services/copy.service';
@@ -54,8 +54,8 @@ export class SellNewComponent implements OnInit {
     return this.copyService.create(this.copy)
       .toPromise()
       .then(res => {
-        const {title, circulation, price, id, present_circulation, cost}: { title: string; circulation: string; price: string; cost: string; id: string; present_circulation: string;} = res.json();
-        this.copyStoreService.copies.push(new CopyEntity(title, circulation, price, present_circulation, cost, id));
+        const {title, circulation, price, present_circulation, cost, id} = <ICopyEntity>res.json();
+        this.copyStoreService.copies.push(new CopyEntity(title, circulation, price, cost, id));
         this.copyEditStoreService.editModeIndex = null;
       });
   }
@@ -64,7 +64,7 @@ export class SellNewComponent implements OnInit {
     return this.copyService
       .update(this.copy)
       .subscribe(res => {
-        const {id, title, circulation, price, present_circulation, cost}: { id: string; title: string; circulation: string; price: string; present_circulation: string; cost: string; } = res.json();
+        const {id, title, circulation, price, present_circulation, cost} = <ICopyEntity>res.json();
         this.copyStoreService.copies = this.copyStoreService.copies.map(copy => {
           return copy.id === id ? new CopyEntity(title, circulation, price,present_circulation, cost, id) : copy;
         });
