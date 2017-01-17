@@ -17,10 +17,7 @@ export class SellComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.copyStoreService.init()
-      .then(() => {
-        this.sellStoreService.selected = this.copyStoreService.copies.map(c => 0);
-      });
+    this.sellStoreService.init();
     this.sellService.getSummary().toPromise()
       .then(res => {
         this.totalSold = +res.json()[0].total_sold;
