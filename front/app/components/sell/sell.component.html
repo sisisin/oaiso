@@ -15,7 +15,7 @@
       <tr *ngFor="let copy of copyStoreService.copies; let i = index;">
         <td>
           {{copy.title}}
-          <span class="new badge sell-selected-badge" data-badge-caption="" *ngIf="!isSelectedNone(i)">{{sellStoreService.selected[i]}}</span>
+          <span class="new badge sell-selected-badge" data-badge-caption="" *ngIf="!isSelectedNone(i)">{{sellStoreService.sellLines[i].selected}}</span>
         </td>
         <td>{{copy.present_circulation ? copy.present_circulation : copy.circulation}}</td>
         <td>{{copy.price}}</td>
