@@ -10,17 +10,21 @@ export class SellStoreService {
   constructor(private copyStoreService: CopyStoreService) { }
 
   add(id: string) {
+    if(!this.selected) return true;
     this.selected[+id]++;
   }
   minus(id: string) {
+    if(!this.selected) return true;
     this.selected[+id]--;
   }
 
   isSelectedJustAsCirculation(id: string) {
+    if(!this.selected) return true;
     return this.selected[+id] >= +this.copyStoreService.copies[+id].circulation;
   }
 
   isSelectedNone(id: string) {
+    if(!this.selected) return true;
     return this.selected[+id] <= 0;
   }
 

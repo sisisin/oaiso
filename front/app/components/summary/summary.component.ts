@@ -18,6 +18,7 @@ export class SummaryComponent {
 
   get sum() {
     if (!this.copyStoreService.copies) return 0;
+    if (!this.sellStoreService.selected) return 0;
     const prices = this.copyStoreService.copies.map(c => +c.price);
     return this.sellStoreService.selected.reduce((prev, curr, i) => prev + (curr * prices[i]), 0);
   }
